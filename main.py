@@ -22,14 +22,17 @@ label3 = tk.Label(text="label3")
 
 button1 = tk.Button(text="button1", 
 #state=tk.DISABLED,
-command=button1_click,padx=50, pady=50, fg="blue", bg="red")
+command=button1_click,padx=50, pady=50, fg="blue", bg="red", borderwidth=10)
 #command=button1_click,padx=50, pady=50).grid(row=3, column=4)
 #tutorial: button1 = Button(root,text="button1", state=DISABLED)
+
+entry = tk.Entry(fg="yellow", bg="blue", width=50, borderwidth=10)
 
 button1.pack()
 label1.pack()
 label2.pack()
 label3.pack()
+entry.pack()
 
 '''
 window.mainloop() tells Python to run the Tkinter event loop.
