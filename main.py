@@ -27,6 +27,7 @@ command=button1_click,padx=50, pady=50, fg="blue", bg="red", borderwidth=10)
 #tutorial: button1 = Button(root,text="button1", state=DISABLED)
 
 entry = tk.Entry(fg="yellow", bg="blue", width=50, borderwidth=10)
+entry.insert(0, "Placeholder - Enter something...")
 
 button1.pack()
 label1.pack()
