@@ -4,7 +4,7 @@ window = tk.Tk()
 #tutorial: root = Tk()
 
 def button1_click():
-    label_button1 = tk.Label(text="label_button1")
+    label_button1 = tk.Label(text="label_button1: " + entry.get())
     label_button1.pack()
 
 
