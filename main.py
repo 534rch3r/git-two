@@ -7,6 +7,11 @@ def button1_click():
     label_button1 = tk.Label(text="label_button1: " + entry.get())
     label_button1.pack()
 
+def calculator():
+    calculator_entry = tk.Entry(fg="white", bg="black", width=35, borderwidth=5)
+    calculator_entry.insert(0, "Calculator - enter something...")
+    calculator_entry.grid(row=0,column=0,padx=10,pady=10)
+
 
 #label1 = tk.Label(text="label1").grid(row=0, column=0)
 #label2 = tk.Label(text="label2").grid(row=1, column=5)
@@ -28,6 +33,9 @@ command=button1_click,padx=50, pady=50, fg="blue", bg="red", borderwidth=10)
 
 entry = tk.Entry(fg="yellow", bg="blue", width=50, borderwidth=10)
 entry.insert(0, "Placeholder - Enter something...")
+
+calculator()
+
 
 button1.pack()
 label1.pack()
