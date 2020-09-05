@@ -1,10 +1,15 @@
 import tkinter as tk
 
 window = tk.Tk()
+
+#https://www.iconfinder.com/icondesigner
+window.iconbitmap(r'c:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Icons\iconfinder_website\iconfinder_Python_logo_282803.ico')
+
 calculator_entry = tk.Entry(fg="white", bg="black", borderwidth=5)
 #tutorial: root = Tk()
 calc_variable1,calc_variable2 = 0,0
 math_action = ""
+
 
 def initial_program():
     #label1 = tk.Label(text="label1").grid(row=0, column=0)
