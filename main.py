@@ -42,6 +42,7 @@ def calculator():
     global calc_button_multiply
     global calc_button_divide
     global calc_button_subtract
+    global calc_button_raiseToThePowerOf
     calculator_entry.insert(0, "Calculator - enter something...")
     calc_button0 = tk.Button(text="0",command=lambda: button_calc_number(0),padx=20, pady=20, fg="black", bg="white", borderwidth=3)
     calc_button1 = tk.Button(text="1",command=lambda: button_calc_number(1),padx=20, pady=20, fg="black", bg="white", borderwidth=3)
@@ -59,6 +60,7 @@ def calculator():
     calc_button_multiply = tk.Button(text="*",command=calc_button_multiply,padx=20, pady=20, fg="black", bg="white", borderwidth=3)
     calc_button_divide = tk.Button(text="/",command=calc_button_divide,padx=20, pady=20, fg="black", bg="white", borderwidth=3)
     calc_button_subtract = tk.Button(text="-",command=calc_button_subtract,padx=20, pady=20, fg="black", bg="white", borderwidth=3)
+    calc_button_raiseToThePowerOf = tk.Button(text="x^y",command=calc_button_raiseToThePowerOf,padx=20, pady=20, fg="black", bg="white", borderwidth=3)
 
     calculator_entry.grid(row=0,column=0,padx=10,pady=10,columnspan=3)
     calc_button0.grid(row=4,column=0)
@@ -77,6 +79,7 @@ def calculator():
     calc_button_subtract.grid(row=3,column=3)
     calc_button_equal.grid(row=6,column=0,columnspan=3)
     calc_button_clear.grid(row=5,column=0,columnspan=3)
+    calc_button_raiseToThePowerOf.grid(row=7,column=0,columnspan=3)
     
 def button_calc_number(number):
     # calculator_entry.delete(0,tk.END)
@@ -123,6 +126,14 @@ def calc_button_subtract():
         calc_variable1 = calculator_entry.get()
         calculator_entry.delete(0, tk.END)
 
+def calc_button_raiseToThePowerOf():
+    global math_action
+    math_action = "powerOf"
+    global calc_variable1
+    if(calculator_entry.get().isnumeric()):
+        calc_variable1 = calculator_entry.get()
+        calculator_entry.delete(0, tk.END)
+
 def button_calc_equal():
     global math_action 
     if(math_action=="add"):
@@ -157,8 +168,14 @@ def button_calc_equal():
         print("type(calc_variable2): ",type(calc_variable2)) 
         print("calc_variable2: ",calc_variable2) 
         calculator_entry.insert(0,float(calc_variable1) - float(calc_variable2))
-
-
+    elif(math_action=="powerOf"):
+        calc_variable2 = calculator_entry.get()
+        calculator_entry.delete(0, tk.END)
+        print("type(calc_variable1): ",type(calc_variable1)) 
+        print("calc_variable1: ",calc_variable1) 
+        print("type(calc_variable2): ",type(calc_variable2)) 
+        print("calc_variable2: ",calc_variable2) 
+        calculator_entry.insert(0,float(calc_variable1) ** float(calc_variable2))
 
 #initial_program()
 calculator()
