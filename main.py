@@ -1,5 +1,6 @@
 import tkinter as tk
 from PIL import ImageTk,Image   
+#import pathlib
 
 window = tk.Tk()
 
@@ -7,6 +8,21 @@ window = tk.Tk()
 calc_variable1,calc_variable2 = 0,0
 math_action = ""
 
+def images():
+    #global window
+
+    #https://www.freeimages.com/photographer/watford-39012
+    img = Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\new-zealand-ferns-1178495.jpg")
+    img = img.resize((400, 400))
+    window.img = ImageTk.PhotoImage(img)
+    #img  = ImageTk.PhotoImage(Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\new-zealand-ferns-1178495.jpg"))
+    label4 = tk.Label(image=window.img)
+    #label4.place(x=0, y=0, relwidth=1, relheight=1)
+
+    button_quit = tk.Button(text="Exit program",command=window.quit,padx=20, pady=20, fg="black", bg="white", borderwidth=3)
+ 
+    label4.pack()
+    button_quit.pack()   
 
 def initial_program():
     #label1 = tk.Label(text="label1").grid(row=0, column=0)
@@ -48,7 +64,7 @@ def calculator():
     global calc_button_divide
     global calc_button_subtract
     global calc_button_raiseToThePowerOf
-    
+
     calculator_entry = tk.Entry(fg="white", bg="black", borderwidth=5)
     calculator_entry.insert(0, "Calculator - enter something...")
     calc_button0 = tk.Button(text="0",command=lambda: button_calc_number(0),padx=20, pady=20, fg="black", bg="white", borderwidth=3)
@@ -186,7 +202,9 @@ def button_calc_equal():
         print("calc_variable2: ",calc_variable2) 
         calculator_entry.insert(0,float(calc_variable1) ** float(calc_variable2))
 
-calculator()
+#calculator()
+images()
+
 
 '''
 window.mainloop() tells Python to run the Tkinter event loop.
