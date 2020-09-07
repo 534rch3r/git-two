@@ -3,10 +3,10 @@ from PIL import ImageTk,Image
 #import pathlib
 
 window = tk.Tk()
-
 #tutorial: root = Tk()
 calc_variable1,calc_variable2 = 0,0
 math_action = ""
+img_number_imgViewerApp = 1
 
 def images():
     #global window
@@ -23,6 +23,107 @@ def images():
  
     label4.pack()
     button_quit.pack()   
+
+def imageViewer():
+    global button_back
+    global button_exit
+    global button_forward
+    global label4    
+    global img_list
+    global img_number_imgViewerApp
+
+    #img1 = Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\new-zealand-ferns-1178495.jpg").resize(400, 400)
+    #img2 = Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\ferns-3-1405636.jpg")
+    #img3 = Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\ir-fern-frond-1372220.jpg")
+    #img4 = Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\on-the-fern-1409420.jpg")
+   
+    window.img1 = ImageTk.PhotoImage(Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\new-zealand-ferns-1178495.jpg").resize((500, 500)))
+    window.img2 = ImageTk.PhotoImage(Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\ferns-3-1405636.jpg").resize((400, 400)))
+    window.img3 = ImageTk.PhotoImage(Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\ir-fern-frond-1372220.jpg").resize((300, 300)))
+    window.img4 = ImageTk.PhotoImage(Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\on-the-fern-1409420.jpg").resize((100, 100))) 
+    window.img5 = ImageTk.PhotoImage(Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\the-road-through-the-woods-1449194.jpg").resize((250, 250))) 
+    window.img6 = ImageTk.PhotoImage(Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\shore-1385226.jpg").resize((150, 150))) 
+    window.img7 = ImageTk.PhotoImage(Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\bottoms-up-1363459.jpg").resize((450, 450))) 
+    img_list = [window.img1,window.img2,window.img3,window.img4,window.img5,window.img6,window.img7]
+
+    #window.img1 = ImageTk.PhotoImage(Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\new-zealand-ferns-1178495.jpg").resize((800, 800)))
+    #img1 = img1.resize((400, 400))
+    #window.img1 = ImageTk.PhotoImage(img1)
+    '''
+    list = [1, 3, 5, 7, 9] 
+    # getting length of list 
+    length = len(list) 
+    
+    # Iterating the index 
+    # same as 'for i in range(len(list))' 
+    for i in range(length): 
+        print(list[i]) 
+    '''
+
+    label4 = tk.Label(image=window.img2)
+    label4.grid(row=0,column=0,columnspan=3)
+    
+    button_back = tk.Button(text="<",command=lambda: back(img_number_imgViewerApp))
+    button_exit = tk.Button(text="Exit",command=window.quit)
+    button_forward = tk.Button(text=">",command=lambda: forward(img_number_imgViewerApp))
+
+    button_back.grid(row=1,column=0)
+    button_exit.grid(row=1,column=1)
+    button_forward.grid(row=1,column=2)
+
+def forward(img_number):
+    global label4
+    global button_forward
+    global img_list
+    global img_number_imgViewerApp
+    
+    img_number_imgViewerApp = img_number
+
+    if(img_number_imgViewerApp == 6):
+        button_forward = tk.Button(text=">",command=lambda: forward(img_number_imgViewerApp), state=tk.DISABLED)   
+    elif(img_number_imgViewerApp < 6 and img_number_imgViewerApp >= 0):
+        #img_number_imgViewerApp = img_number + 1
+
+        label4.grid_forget()
+        
+        #if(img_number<)
+        img_number_imgViewerApp = img_number + 1
+        label4 = tk.Label(image=img_list[img_number_imgViewerApp])
+        label4.grid(row=0,column=0,columnspan=3)
+
+        print("len(img_list): ",len(img_list))
+
+        #complete update
+        button_forward = tk.Button(text=">",command=lambda: forward(img_number_imgViewerApp))
+        button_forward.grid(row=1,column=2)
+        #print(globals())
+        
+def back(img_number):
+    global label4
+    global button_back
+    global img_list
+    global img_number_imgViewerApp
+    
+    img_number_imgViewerApp = img_number
+
+    if(img_number_imgViewerApp == 0):
+        button_back = tk.Button(text="<",command=lambda: back(img_number_imgViewerApp), state=tk.DISABLED)   
+    elif(img_number_imgViewerApp > 0 and img_number_imgViewerApp <= 6):
+        
+        label4.grid_forget()
+        
+        #if(img_number<)
+        img_number_imgViewerApp = img_number - 1
+        label4 = tk.Label(image=img_list[img_number_imgViewerApp])
+        label4.grid(row=0,column=0,columnspan=3)
+
+        print("len(img_list): ",len(img_list))
+        
+        #complete update
+        button_back = tk.Button(text="<",command=lambda: back(img_number_imgViewerApp))
+        button_back.grid(row=1,column=0)
+        #print(globals())
+    
 
 def initial_program():
     #label1 = tk.Label(text="label1").grid(row=0, column=0)
@@ -203,8 +304,8 @@ def button_calc_equal():
         calculator_entry.insert(0,float(calc_variable1) ** float(calc_variable2))
 
 #calculator()
-images()
-
+#images()
+imageViewer()
 
 '''
 window.mainloop() tells Python to run the Tkinter event loop.
