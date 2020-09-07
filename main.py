@@ -1,11 +1,8 @@
 import tkinter as tk
+from PIL import ImageTk,Image   
 
 window = tk.Tk()
 
-#https://www.iconfinder.com/icondesigner
-window.iconbitmap(r'c:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Icons\iconfinder_website\iconfinder_Python_logo_282803.ico')
-
-calculator_entry = tk.Entry(fg="white", bg="black", borderwidth=5)
 #tutorial: root = Tk()
 calc_variable1,calc_variable2 = 0,0
 math_action = ""
@@ -44,10 +41,15 @@ def button1_click():
     label_button1.pack()
 
 def calculator():
+    #https://www.iconfinder.com/icondesigner
+    window.iconbitmap(r'c:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Icons\iconfinder_website\iconfinder_Python_logo_282803.ico')
+    
     global calc_button_multiply
     global calc_button_divide
     global calc_button_subtract
     global calc_button_raiseToThePowerOf
+    
+    calculator_entry = tk.Entry(fg="white", bg="black", borderwidth=5)
     calculator_entry.insert(0, "Calculator - enter something...")
     calc_button0 = tk.Button(text="0",command=lambda: button_calc_number(0),padx=20, pady=20, fg="black", bg="white", borderwidth=3)
     calc_button1 = tk.Button(text="1",command=lambda: button_calc_number(1),padx=20, pady=20, fg="black", bg="white", borderwidth=3)
@@ -66,7 +68,8 @@ def calculator():
     calc_button_divide = tk.Button(text="/",command=calc_button_divide,padx=20, pady=20, fg="black", bg="white", borderwidth=3)
     calc_button_subtract = tk.Button(text="-",command=calc_button_subtract,padx=20, pady=20, fg="black", bg="white", borderwidth=3)
     calc_button_raiseToThePowerOf = tk.Button(text="x^y",command=calc_button_raiseToThePowerOf,padx=20, pady=20, fg="black", bg="white", borderwidth=3)
-
+    button_quit = tk.Button(text="Exit program",command=window.quit,padx=20, pady=20, fg="black", bg="white", borderwidth=3)
+ 
     calculator_entry.grid(row=0,column=0,padx=10,pady=10,columnspan=3)
     calc_button0.grid(row=4,column=0)
     calc_button1.grid(row=1,column=0)
@@ -85,7 +88,8 @@ def calculator():
     calc_button_equal.grid(row=6,column=0,columnspan=3)
     calc_button_clear.grid(row=5,column=0,columnspan=3)
     calc_button_raiseToThePowerOf.grid(row=7,column=0,columnspan=3)
-    
+    button_quit.grid(row=0,column=10,rowspan=3)
+
 def button_calc_number(number):
     # calculator_entry.delete(0,tk.END)
     current = calculator_entry.get()
@@ -182,7 +186,6 @@ def button_calc_equal():
         print("calc_variable2: ",calc_variable2) 
         calculator_entry.insert(0,float(calc_variable1) ** float(calc_variable2))
 
-#initial_program()
 calculator()
 
 '''
