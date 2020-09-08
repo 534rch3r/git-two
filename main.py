@@ -31,6 +31,7 @@ def imageViewer():
     global label4    
     global img_list
     global img_number_imgViewerApp
+    global statusBar
 
     #img1 = Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\new-zealand-ferns-1178495.jpg").resize(400, 400)
     #img2 = Image.open(r"C:\Users\hencis\Desktop\stuff\software_data_projects_and_other_all\Images\freeimages\FreeImages_comContentLicense\ferns-3-1405636.jpg")
@@ -59,6 +60,9 @@ def imageViewer():
     for i in range(length): 
         print(list[i]) 
     '''
+    statusBar = tk.Label(text="Image [" + str(img_number_imgViewerApp+1) + "] of " + str(len(img_list)), bd=2, 
+    relief=tk.RIDGE, anchor=tk.W
+    )
 
     label4 = tk.Label(image=window.img2)
     label4.grid(row=0,column=0,columnspan=3)
@@ -69,14 +73,16 @@ def imageViewer():
 
     button_back.grid(row=1,column=0)
     button_exit.grid(row=1,column=1)
-    button_forward.grid(row=1,column=2)
+    button_forward.grid(row=1,column=2,pady=5)
+    statusBar.grid(row=2,column=0,columnspan=3,sticky=tk.W+tk.E)
 
 def forward(img_number):
     global label4
     global button_forward
     global img_list
     global img_number_imgViewerApp
-    
+    global statusBar
+
     img_number_imgViewerApp = img_number
 
     if(img_number_imgViewerApp == 6):
@@ -86,7 +92,6 @@ def forward(img_number):
 
         label4.grid_forget()
         
-        #if(img_number<)
         img_number_imgViewerApp = img_number + 1
         label4 = tk.Label(image=img_list[img_number_imgViewerApp])
         label4.grid(row=0,column=0,columnspan=3)
@@ -96,6 +101,12 @@ def forward(img_number):
         #complete update
         button_forward = tk.Button(text=">",command=lambda: forward(img_number_imgViewerApp))
         button_forward.grid(row=1,column=2)
+
+        statusBar = tk.Label(text="Image [" + str(img_number+2) + "] of " + str(len(img_list)), bd=2, 
+        relief=tk.RIDGE, anchor=tk.W
+        )
+        statusBar.grid(row=2,column=0,columnspan=3,sticky=tk.W+tk.E)
+        
         #print(globals())
         
 def back(img_number):
@@ -103,7 +114,8 @@ def back(img_number):
     global button_back
     global img_list
     global img_number_imgViewerApp
-    
+    global statusBar
+
     img_number_imgViewerApp = img_number
 
     if(img_number_imgViewerApp == 0):
@@ -122,9 +134,14 @@ def back(img_number):
         #complete update
         button_back = tk.Button(text="<",command=lambda: back(img_number_imgViewerApp))
         button_back.grid(row=1,column=0)
+        
+        statusBar = tk.Label(text="Image [" + str(img_number) + "] of " + str(len(img_list)), bd=2, 
+        relief=tk.RIDGE, anchor=tk.W
+        )
+        statusBar.grid(row=2,column=0,columnspan=3,sticky=tk.W+tk.E)
+        
         #print(globals())
     
-
 def initial_program():
     #label1 = tk.Label(text="label1").grid(row=0, column=0)
     #label2 = tk.Label(text="label2").grid(row=1, column=5)
