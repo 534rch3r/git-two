@@ -8,6 +8,16 @@ calc_variable1,calc_variable2 = 0,0
 math_action = ""
 img_number_imgViewerApp = 1
 
+def frames():
+    frame = tk.LabelFrame(window,text="frame label",padx=50,pady=50)
+    frame.pack(padx=100,pady=100)
+
+    btn = tk.Button(frame,text="btn")
+    #btn.pack()
+    btn.grid(row=0,column=0)
+    btn2 = tk.Button(frame,text="btn2")
+    btn2.grid(row=0,column=1)
+    
 def images():
     #global window
 
@@ -322,7 +332,8 @@ def button_calc_equal():
 
 #calculator()
 #images()
-imageViewer()
+#imageViewer()
+frames()
 
 '''
 window.mainloop() tells Python to run the Tkinter event loop.
