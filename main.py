@@ -8,6 +8,46 @@ calc_variable1,calc_variable2 = 0,0
 math_action = ""
 img_number_imgViewerApp = 1
 
+#Radio buttons
+def radioButtons():
+    # radio button set 1
+    #window.geometry("500x100") #Width x Height
+    r = tk.IntVar()
+    r.set("2")
+
+    rb1 = tk.Radiobutton(window,text="option 1",variable=r,value=1,command=lambda:radioButtonClicked(r.get()))
+    rb1.pack(anchor=tk.W)
+    rb2 = tk.Radiobutton(window,text="option 2",variable=r,value=2,command=lambda:radioButtonClicked(r.get()))
+    rb2.pack(anchor=tk.E)
+    """ label5 = tk.Label(window,text=r.get())
+    label5.pack() """
+    btn3 = tk.Button(window,text="btn3",command=lambda:radioButtonClicked(r.get()))
+    btn3.pack()
+
+    # radio button set 2
+    MODES = [
+        ("Monochrome", "WQ1"),
+        ("Grayscale", "LYTE"),
+        ("True color", "RGB"),
+        ("Color separation", "CMYK"),
+    ]
+
+    v = tk.StringVar()
+    v.set("L") # initialize
+
+    for text, mode in MODES:
+        b = tk.Radiobutton(window, text=text,variable=v, value=mode,command=lambda:radioButtonClicked(v.get()))
+        b.pack(anchor=tk.CENTER)
+
+    btn4 = tk.Button(window,text="btn4",command=lambda:radioButtonClicked(v.get()))
+    btn4.pack()
+
+def radioButtonClicked(value):
+    label5 = tk.Label(window,text=value)
+    label5.pack()
+
+    
+#frames
 def frames():
     frame = tk.LabelFrame(window,text="frame label",padx=50,pady=50)
     frame.pack(padx=100,pady=100)
@@ -333,7 +373,8 @@ def button_calc_equal():
 #calculator()
 #images()
 #imageViewer()
-frames()
+#frames()
+radioButtons()
 
 '''
 window.mainloop() tells Python to run the Tkinter event loop.
