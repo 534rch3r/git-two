@@ -1,5 +1,6 @@
 import tkinter as tk
 from PIL import ImageTk,Image   
+from tkinter import messagebox
 #import pathlib
 
 window = tk.Tk()
@@ -7,6 +8,38 @@ window = tk.Tk()
 calc_variable1,calc_variable2 = 0,0
 math_action = ""
 img_number_imgViewerApp = 1
+
+#message boxes
+def popUp():
+    messagebox.showwarning("Pop up", "messagebox.showWarning")
+    messagebox.showinfo("Pop up", "messagebox.showinfo")
+    messagebox.showerror("Pop up", "messagebox.showerror")
+    
+    response3 = messagebox.askquestion("Pop up", "messagebox.askquestion")
+    tk.Label(window, text=response3).pack()
+    if response3 == "yes":
+        tk.Label(window, text="Yes was clicked!!!").pack()
+    else:
+        tk.Label(window, text="No was clicked!!!").pack()  
+    
+    response1 = messagebox.askokcancel("Pop up", "messagebox.askokcancel")
+    tk.Label(window, text=response1).pack()
+    if response1 == True:
+        tk.Label(window, text="Yes was clicked!!!").pack()
+    else:
+        tk.Label(window, text="No was clicked!!!").pack()
+    
+    response2 = messagebox.askyesno("Pop up", "messagebox.askyesno")
+    tk.Label(window, text=response2).pack()
+    if response2 == 1:
+        tk.Label(window, text="Yes was clicked!!!").pack()
+    else:
+        tk.Label(window, text="No was clicked!!!").pack()
+
+ 
+def messageBoxes():
+    btn_popUp = tk.Button(window,text="btn_popUp",command=popUp)
+    btn_popUp.pack()
 
 #Radio buttons
 def radioButtons():
@@ -374,7 +407,8 @@ def button_calc_equal():
 #images()
 #imageViewer()
 #frames()
-radioButtons()
+#radioButtons()
+messageBoxes()
 
 '''
 window.mainloop() tells Python to run the Tkinter event loop.
